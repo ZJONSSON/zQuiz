@@ -1,5 +1,7 @@
 #zQuiz.js v 0.0.1 
 
+See working demo at: <http://zjonsson.github.com/zQuiz/>
+
 ## zQuiz.multi(definitions,options)
 
 Creates multiple choice questions from a definition object.
