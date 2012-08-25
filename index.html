@@ -1,0 +1,187 @@
+<!DOCTYPE html >
+<html>
+  <head>
+  <title>Sandra's Quiz tool</title> 
+
+  <!--    Ipad Init-->
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0"> 
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+      
+  <!--    Jquery Mobile  -->    
+  <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+  <script src="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+  <script type="text/javascript" src="zQuiz.js"></script>
+  </head>
+
+  <body>
+    <div data-role="page">
+        <div data-role="header" data-position="inline">
+            <a href="#" data-icon="home" class="ui-btn-left jqm-home" onclick="main_page()">Home</a>
+            <h1 id="title">Title</h1>
+            <a href="#" id="pagecount" class="ui-btn-right" >../..</a>       
+        </div>
+        <div data-role="content" id="display" style="text-align:center"></div>
+    </div>
+
+    <script type="text/javascript">
+      var quizes = []
+
+      englishWords = [               
+        {word:"abridge",def:"to make shorter",synonyms:["shorten","condense","abbreviate"],antonyms:["expand","enlarge","augment"],"_group":"noun"},
+        {word:"adherent",def:"a follower, supporter",synonyms:["disciple"],antonyms:["opponent","adversary","critic","detractor"],"_group":"noun"},
+        {word:"altercation",def:"an angry argument",synonyms:"quarrel",synonyms:["dispute","squabble"],antonyms:["agreement","accord"]},
+        {word:"cherubic",def:"resembling an angel, sweet and innocent",synonyms:["angelic","seraphic","beatific"],antonyms:["impish","devilish","diabolic","fiendish"]},
+        {word:"condone",_group:"noun",def:"to pardon or overlook",synonyms:["ignore","wink at","turn a blind eye to"],antonyms:["censure","condemn","disapprove"]},
+        {word:"dissent",_group:"verb",def:"to disaggree",synonyms:["differ","dispute"],antonyms:["agree","concur"]},
+        {word:"dissent",_group:"noun",def: "unanimity",antonyms:"harmony"},
+        {word:"eminent",_group:"adj", def:"famour, outstanding",synonyms:["illustrious","reowned"],antonyms:["obscure","nameless","unsung","lowly"]},
+        {word:"exorcise",_group:"verb",def:"to drive out by magic",synonyms:["expel","dispel"]},
+        {word:"fabricate",_group:"verb",def:"to make, manifacture; make up, invent",synonyms:["put together","devise","contrive","concoct"],antonyms:["take apart","undo","destroy","demolish"]},
+        {word:"irate",_group:"adj",def:"angry",synonyms:["incensed","infuriated","enraged"],antonyms:["calm","composed","cool","unruffled"]},
+        {word:"marauder",_group:"noun",def:"a raider, plunderer",synonyms:["looter","pirate","freebooter"]},
+        {word:"obesity",_group:"noun", def:"excessive fatness",synonyms:["serious overweight","extreme corpulence"],antonyms:["emaciation","gauntness","scrawniness"]},
+        {word:"pauper",_group:"noun",def:"an extremely poor person",synonyms:["destructive person"],antonyms:["millionaire","tycoon"]},
+        {word:"pilfer",_group:"verb",def:"steal in small quantities",synonyms:["filch","rob","swipe","purloin"]},
+        {word:"rift",_group:"noun",def:"a split, break, breach",synonyms:["crack","fissuer","gap","cleft"],antonyms:"reconciliation"},
+        {word:"semblance",_group:"noun",def:"a likeness; outward appearence",synonyms:["appearance","air","aura","veneer"],antonyms:["dissimilarity","contrast","total lack"]},
+        {word:"surmount",_group:"verb",def:"to overcome, rise above",synonyms:["conquer","triumph over"],antonyms:["be vanquished","be defeated","succumb to"]},
+        {word:"terminate",_group:"verb",def:"bring to an end",synonyms:["conclude","finish","discontinue"],antonyms:["begin","commence","initiate"]},
+        {word:"trite",_group:"adj",def:"commonplace, overused, stale",synonyms:["banal","hackneyed","corny"],antonyms:["original","novel","fresh","innovative"]},
+        {word:"usurp",_group:"verb",def:"to seize and hold by force or without right",synonyms:["seize illegally","commandeer","supplant"]}
+      ] 
+
+
+
+
+      quizes.push({title:"Respiratory and Cirulatory",
+        def:[
+          {scientificname:'pharynx',  regularName:'throat',description:["___ is a muscular tube around 5 inches long","____ connects the nasal cavity with the tranchea"],length:"5 in"}, 
+          {scientificname:'aveoli',   regularName:'air sacs', description:['The smalles bronchidles are surrounded by tony clusters of  (______)',"There are about 300 million of _____ in each lung","when ____ are filled with air, they resemble tiny balloons","oxygen is able to pass the walls of _____ into the blood capillary"]},
+          {_ignore:true,length:["6 in","8 in","10 in","14 in","16 in"]},
+          {scientificname:'cilia',    regularName:'tiny hairs'},
+          {scientificname:'larynx',   regularName:'voice box',    description:['_____ is a series of folds of tissue surrounded by protective carilage','____ is at the top of your trachea','when air passes over the folds of tissue, sounds are made']},
+          {scientificname:'nasal cavity', regularName:'nose',description:'Blood vessels inside the ____ are very close to the surface'},
+          {scientificname:'trachea',  regularName:'windpipe',length:"12 in",description:"made of smooth muscle, held open by rings of cartilage"},    
+          {scienfificname:'cartilage',description:["___ is 'C' shaped.","  There are 16-20 of them"],how_many:"16-20"},
+          {_ignore:true,how_many:["1-5","5-8","9-12","12-22","18-25"]},
+          {scientificname:'epiglottis',       description:['____ is a flap of muscle at the end of the pharynx','____ when swalling it moves to cover larynx and opening of tranchea']},
+          {scientificname:'Bronchi',          description:['At the base of your trachea, respitatory system splits into to two parts called _____','Each part is a tube leading into left and right lung','___  also have rings of carilage similar to the tranchea']},
+          {scientificname:'Bronchioles',      description:'____ are tiny tubes in the lungs when bronchi becomes smaller and smaller'},
+          {scientificname:'diaphragm',        description:['___ lies under the ribs and looks like a small dome','muscle that separates the chest from the lower part of the body']},
+          {scientificname:'mucus',description:'___ is a moist sticky fluid in the nose'},
+          {regularName:"lungs",description:"____ are cone shaped made of spoungy tissue",lungfunction:"drops CO2 and picks up Oxygen"},
+          {lung:"left lung",lungsize:"slightly smaller than the other"},
+          {lung:"right lung",lungsize:"slightly bigger than the other"},
+          {regularName:"heart",description:"split into 4 chambers"},
+        ],
+        options: {
+          noAnswer : ["description"],
+          noQuestion:["circPurpose"]
+        }
+      })
+
+      quizes.push({title:"Cirulatory",
+        def: [
+          {bloodOrigin:"from the body ",oxygenContent:"no oxygen, only CO2",enteringVessel:"vena cava",exitVessel:"pulmonary artery",enteringChamber:"right atrium",exitingChamber:"right ventricle",bloodDestination:"lungs"},
+          {bloodOrigin:"from the lungs",oxygenContent:"Oxygen, no CO2",enteringVessel:"pulmonary vein",exitVessel:"aorta",enteringChamber:"left atrium",exitingChamber:"left ventricle",bloodDestination:"body"},
+          {_ignore:true,exitVessel:["vena cava","pulmonary vein"],enteringVessel:["aorta","pulmonary artery"],enterChamber:["right ventricle","left ventricle"],exitingChamber:["right atrium","left atrium"],lungfunction:"drops Oxygen and picks up Co2"},
+          {circulation:"Systemic Circulation",circDesc:"pushes blood through the body and back",circPurpose:"push oxygen and nutrients to cells"},
+          {circulation:"Pulmonary circulation",circDesc:"pushes blood to the lungs and back",circPurpose:"replenish oxiygen in the blood"}
+        ]
+      })
+              
+      quizes.push({title:"English words - simple",def: englishWords,options: {noQuestion:["synonyms","antonyms"],onlyAnswer:["def","word"]}})
+      quizes.push({title:"English words - medium",def: englishWords,options: {noQuestion:["synonyms","antonyms"]}})
+      quizes.push({title:"English words - COMPLEX",def: englishWords})
+
+      //----------------------------------------------------------------------------------------------------
+      // Quiz-code
+      //----------------------------------------------------------------------------------------------------
+
+
+      function button() { return $("<a/>").attr("data-role",'button') .attr("href",'#').trigger("create") }
+      function randOrd(){return (Math.round(Math.random())-0.5); }
+      function toArray(s) {     return (s==null) ? [] : (typeof(s) == "object" && s.length>0) ? s : [s]   }
+      function toSet(s) { var set = {}; toArray(s).forEach(function(d) { set[d] = true}); return set}
+
+      display=$("#display")
+
+      function main_page() {
+        $("#title").text("Quiz machine")
+        $("#pagecount").text("/");
+        display.empty()
+        quizes.forEach(function(d,i) {
+          display.append( button().text(d.title).click(function() { showQuiz(quizes[i])}) )   
+        })
+        display.trigger("create")
+      }
+
+      function showQuiz(quiz,pickLines) {
+        var correct = 0
+            ,wrongtxt = ""
+            ,wrongdef = []
+            
+        function nextQuestion(i) {    
+          i = i || 0;
+          if (i >= questions.length) return showScore()
+          var q=questions[i]
+
+          function checkAnswer() { 
+            if (this.id == q.adef) {
+              correct++
+            } else {
+              alert("Wrong. The correct answer is: "+q.adef)
+              wrongtxt+=("<HR><b>("+(i+1)+") "+q.qdef+"</b><br>You guessed: "+this.id+"<br>Correct answer: <b>"+q.adef+"</b>")
+              wrongdef.push(q.lineNum)
+            }
+            nextQuestion(++i)
+          }
+
+          $("#pagecount").text((i+1)+"/"+questions.length)
+          display.html(q.qkey+": "+((q.line._group) ? ("["+q.line._group+"] ") : "")+q.qdef+"<br>"+q.akey+"= ?<br>")
+          q.candidates.forEach(function(d,i) {
+            display.append(button().text(d).attr("id",d).click(checkAnswer))
+          })
+          display.trigger("create")
+        }
+        
+        function showScore() {
+          display
+            .empty()
+            .append($("<h1/>").text("Results: "+correct+"/"+questions.length))
+            .append($("<p/>").html(wrongtxt));
+          
+          if (wrongdef.length>0) display.append(
+              button().text("Retake wrong definitions").click(function() {showQuiz(quiz,wrongdef)})
+          );
+
+          display
+            .append(button().text("Restart").click(function() { showQuiz(quiz)}))
+            .append(button().text("Main menu").click(function() { main_page()}))
+            .trigger("create")
+          }           
+
+        $("#title").text((quiz.title || "Quiz")+((pickLines) ? " (*)":""))
+        correct = 0,wrongtxt="",wrongdef=[]
+        questions = zQuiz.multi(quiz.def,$.extend(quiz.options,{includeAnswer:true,onlyLines:pickLines}))
+        display.empty()
+          .append($("<h1/>").text("How many questions?"))
+        
+        for (var i=5;i<questions.length;i+=20) {
+          display.append(
+            button().text(i).click(function() { questions = questions.slice(0,this.text);nextQuestion(0)})
+          )
+        }
+        
+        display
+          .append( button().text("all").click(function() { nextQuestion()}))
+          .trigger("create")
+
+      }
+             
+      main_page()  
+    </script>
+  </body>
+</html>
