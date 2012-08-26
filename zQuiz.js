@@ -24,10 +24,10 @@ Options:
     maxSel:         Maximum number of wrong answers (candidates) provided for each question
     includeAnswer:  Include the correct answer in the list of candidates
     
-    noQuestions:    List of categories that will not form an answer  
-    noAnswers:      List of categories that will not form a question  
-    onlyQuestions:  If defined, answer-keys will only be from this list
-    onlyAnswers:    If defined, questions-key will only be from this list
+    noQuestion:    List of categories that will not form an answer  
+    noAnswer:      List of categories that will not form a question  
+    onlyQuestion:  If defined, answer-keys will only be from this list
+    onlyAnswer:    If defined, questions-key will only be from this list
     noGroups:       If true then the _group property will be ignored and candidates will be
                     selected from all definitions sharing same category key
     
