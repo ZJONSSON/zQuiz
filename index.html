@@ -53,6 +53,89 @@
         {word:"usurp",_group:"verb",def:"to seize and hold by force or without right",synonyms:["seize illegally","commandeer","supplant"]}
       ] 
 
+      spanishWords = [
+        {spanish:'la calculatora', english:'calculator','_group':'tech'},
+        {spanish:'la cámara digital', english:'digital video camera','_group':'tech'},
+        {spanish:'el canal', english:'TV channel','_group':'tech'},
+        {spanish:'el cibercafé', english:'cybercafé','_group':'tech'},
+        {spanish:'la contestadora', english:'answering machine','_group':'tech'},
+        {spanish:'el control remoto', english:'remote control','_group':'tech'},
+        {spanish:'el disco compacto', english:'compact disc','_group':'tech'},
+        {spanish:'el estéreo', english:'dstereo','_group':'tech'},
+        {spanish:'el fax', english:'fax machine','_group':'tech'},
+        {spanish:'el radio', english:'radio','_group':'tech'},
+        {spanish:'el reproductor de MP3', english:'MP3 player','_group':'tech'},
+        {spanish:'el teléfono celular', english:'cell phone','_group':'tech'},
+        {spanish:'la televisión por cable', english:'cable television','_group':'tech'},
+        {spanish:'el televisor', english:'television set','_group':'tech'},
+        {spanish:'el rocadiscos compacto', english:'compact disc player','_group':'tech'},
+        {spanish:'el video', english:'video','_group':'tech'},
+        {spanish:'la videocasetera', english:'VCR','_group':'tech'},
+        {spanish:'apagar', english:'to turn off','_group':'tech'},
+        {spanish:'funcionar', english:'to work','_group':'tech'},
+        {spanish:'llamar', english:'to call','_group':'tech'},
+        {spanish:'poner,prender', english:'to turn on','_group':'tech'},
+        {spanish:'sonar (o:ue)', english:'to ring','_group':'tech'},
+        {spanish:'descompuesto/a', english:'not working ','_group':'tech'},
+        {spanish:'lento/a', english:'slow','_group':'tech'},
+        {spanish:'lleno/a', english:'full','_group':'tech'},
+        {spanish:'el archivo', english:'file','_group':'computer'},
+        {spanish:'arroba', english:'at-symbol','_group':'computer'},
+        {spanish:'el cederrón', english:'CD-rom','_group':'computer'},
+        {spanish:'la computadora', english:'computer','_group':'computer'},
+        {spanish:'la dirección electrónica', english:'email','_group':'computer'},
+        {spanish:'el disco compacto', english:'compact disc','_group':'computer'},
+        {spanish:'la impresora', english:'printer','_group':'computer'},
+        {spanish:'Internet', english:'internet','_group':'computer'},
+        {spanish:'el mensaje de texto', english:'text message','_group':'computer'},
+        {spanish:'el monitor', english:'computer monitor','_group':'computer'},
+        {spanish:'la página principal', english:'home page','_group':'computer'},
+        {spanish:'la pantalla', english:'screen','_group':'computer'},
+        {spanish:'el programa de computación', english:'software','_group':'computer'},
+        {spanish:'el ratón', english:'mouse','_group':'computer'},
+        {spanish:'la red', english:'network','_group':'computer'},
+        {spanish:'el reproductor de DVD', english:'dvd','_group':'computer'},
+        {spanish:'el sitio web', english:'website','_group':'computer'},
+        {spanish:'el teclado', english:'keyboard','_group':'computer'},
+        {spanish:'borrar', english:'to erase','_group':'computer'},
+        {spanish:'descargar', english:'to download','_group':'computer'},
+        {spanish:'grabar', english:'to record','_group':'computer'},
+        {spanish:'guardar', english:'to save','_group':'computer'},
+        {spanish:'imprimir', english:'to print','_group':'computer'},
+        {spanish:'navegar', english:'to surf','_group':'computer'},
+        {spanish:'quemar', english:'to burn (cd)','_group':'computer'},
+        {spanish:'la autopista, la carretera', english:'highway','_group':'car'},
+        {spanish:'el baúl', english:'trunk','_group':'car'},
+        {spanish:'la calle', english:'street','_group':'car'},
+        {spanish:'el capó, el cofre', english:'hood','_group':'car'},
+        {spanish:'el carro, el coche', english:'car','_group':'car'},
+        {spanish:'la circulación, el tráfico', english:'traffic','_group':'car'},
+        {spanish:'el garaje, el taller', english:'garage','_group':'car'},
+        {spanish:'la gasolina', english:'gasoline','_group':'car'},
+        {spanish:'la gasolinera', english:'gas station','_group':'car'},
+        {spanish:'la licencia de conducir', english:'drivers license','_group':'car'},
+        {spanish:'la llanta', english:'tire','_group':'car'},
+        {spanish:'et/la mecánico/a', english:'mechanic','_group':'car'},
+        {spanish:'el parabrisas', english:'windshield','_group':'car'},
+        {spanish:'la policía', english:'police','_group':'car'},
+        {spanish:'la velocidad máxima', english:'speed limit','_group':'car'},
+        {spanish:'el volante', english:'steering wheel','_group':'car'},
+        {spanish:'arrancar', english:'to start','_group':'car'},
+        {spanish:'arreglar', english:'to fix','_group':'car'},
+        {spanish:'bajar(se) de', english:'to get out of','_group':'car'},
+        {spanish:'conducir, manejar', english:'to drive','_group':'car'},
+        {spanish:'estacionar', english:'to park','_group':'car'},
+        {spanish:'llenar', english:'to fill','_group':'car'},
+        {spanish:'parar', english:'top stop','_group':'car'},
+        {spanish:'revisar (el aceite)', english:'to check','_group':'car'},
+        {spanish:'subir(se) a', english:'to get on','_group':'car'},
+        {spanish:'abrazar(se)', english:'to hug','_group':'verbs'},
+        {spanish:'ayudar(se)', english:'to help','_group':'verbs'},
+        {spanish:'besar(se)', english:'to kiss','_group':'verbs'},
+        {spanish:'encontrar', english:'to meet','_group':'verbs'},
+        {spanish:'saludar(se)', english:'to greet','_group':'verbs'},
+      ];
+
 
 
 
@@ -96,6 +179,9 @@
       quizes.push({title:"English words - simple",def: englishWords,options: {noQuestion:["synonyms","antonyms"],onlyAnswer:["def","word"]}})
       quizes.push({title:"English words - medium",def: englishWords,options: {noQuestion:["synonyms","antonyms"]}})
       quizes.push({title:"English words - COMPLEX",def: englishWords})
+
+      quizes.push({title:'2 - vocabulario simple',def :spanishWords,options: {noQuestion:['s']}});
+      quizes.push({title:'2 - vocabulario harder',def :spanishWords});
 
       //----------------------------------------------------------------------------------------------------
       // Quiz-code
