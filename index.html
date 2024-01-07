@@ -9,9 +9,10 @@
   <meta name="apple-mobile-web-app-capable" content="yes" />
       
   <!--    Jquery Mobile  -->    
-  <link rel="stylesheet" href="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
-  <script src="http://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
-  <script src="http://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+  <link rel="stylesheet" href="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.css" />
+  <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-1.8.0.js"></script>
+  <script src="https://ajax.aspnetcdn.com/ajax/jquery.mobile/1.1.1/jquery.mobile-1.1.1.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/d3-dsv@3.0.1/dist/d3-dsv.min.js"></script>
   <script type="text/javascript" src="zQuiz.js"></script>
   </head>
 
@@ -107,14 +108,31 @@
       function toSet(s) { var set = {}; toArray(s).forEach(function(d) { set[d] = true}); return set}
 
       display=$("#display")
-
-      function main_page() {
+      async function main_page() {
         $("#title").text("Quiz machine")
         $("#pagecount").text("/");
-        display.empty()
-        quizes.forEach(function(d,i) {
-          display.append( button().text(d.title).click(function() { showQuiz(quizes[i])}) )   
-        })
+        display.empty();
+        let params = (new URL(document.location)).searchParams;
+        let sheet = params.get("sheet");
+        if ( sheet) {
+          const url = `https://docs.google.com/spreadsheets/u/1/d/${sheet}/export?format=csv`;
+          const body = await new Promise( resolve => {
+            $.get(url, resolve)
+          });
+          const data = d3.csvParse(body);
+          data.forEach(d => Object.keys(d).forEach(key => {
+            if (d[key].length == 0) {
+              delete d[key];
+            } else {
+              d[key] = d[key].split('|');
+            }
+          }))
+          showQuiz({title: 'Sheet', def: data, options: Object.assign({},data[0])}) 
+        } else {
+          quizes.forEach(function(d,i) {
+            display.append( button().text(d.title).click(function() { showQuiz(quizes[i])}) )   
+          });
+        }
         display.trigger("create")
       }
 
