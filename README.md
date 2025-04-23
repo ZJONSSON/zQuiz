@@ -1,5 +1,5 @@
 #zQuiz.js v 0.0.1 
-See working demo at: <http://zjonsson.github.com/zQuiz/>
+See working demo at: <http://zjonsson.github.io/zQuiz/>
 
 ## Background
 
